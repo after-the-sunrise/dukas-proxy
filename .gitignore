@@ -1,0 +1,25 @@
+# OS / Runtime
+/**/.DS_Store
+/**/Thumbs.db
+/**/*.swp
+
+# IDE (Eclipse)
+.classpath
+.project
+.settings
+bin
+
+# IDE (Intellij IDEA)
+*.iml
+.idea
+out
+
+# Gradle
+.gradle
+build
+
+# Travis CI
+.ruby-version
+
+# Application
+/logs

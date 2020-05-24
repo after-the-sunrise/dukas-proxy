@@ -1,0 +1,71 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'war'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://www.dukascopy.com/client/jforexlib/publicrepo"
+    }
+}
+
+ext {
+    simpleclient = '0.9.+'
+    springboot = '2.+'
+    immutables = '2.+'
+    jupiter = '5.+'
+    mockito = '3.+'
+}
+
+dependencies {
+    compile 'com.dukascopy.api:JForex-API:2.13.+'
+    compile('com.dukascopy.dds2:DDS2-jClient-JForex:3.6.+') {
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    }
+    compile "org.apache.commons:commons-configuration2:2.+"
+    compile "com.google.code.gson:gson:2.+"
+    compile "org.immutables:value:$immutables"
+    compile "org.immutables:gson:$immutables"
+    compile("org.springframework.boot:spring-boot-starter-websocket:$springboot") {
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    }
+    compile "io.prometheus:simpleclient_hotspot:$simpleclient"
+    compile "io.prometheus:simpleclient_servlet:$simpleclient"
+    runtime "io.prometheus:simpleclient_logback:$simpleclient"
+    runtime files('src/dist/conf')
+    providedRuntime "org.springframework.boot:spring-boot-starter-tomcat:$springboot"
+    annotationProcessor "org.immutables:value:$immutables"
+    annotationProcessor "org.immutables:gson:$immutables"
+    testImplementation "org.mockito:mockito-core:$mockito"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiter"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiter"
+}
+
+sourceSets {
+    main.java.srcDirs += 'build/generated/sources/annotationProcessor/java/main'
+    test.java.srcDirs += 'build/generated/sources/annotationProcessor/java/test'
+}
+
+group 'com.after_sunrise.dukascopy'
+version '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+application {
+    mainClassName = 'com.after_sunrise.dukascopy.proxy.Launcher'
+}
+
+distributions {
+    main {
+        contents {
+            from(files('README.md', 'LICENSE'))
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,20 @@
+language: java
+
+jdk:
+  - openjdk11
+
+notifications:
+  email:
+    - scm@after-sunrise.com
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "H/9yD5ECMe9sI979o9zRUusV0q7Q+27b1TGsK8aG2RDmC49D739K9thg1bObuRR5mR9LcDIc9a2PahXeW8kxy2XkSK42BG4+cEjYHFz7KM9HklWIxKlT7Rmw8Ms5gFnBkjvB4eFAaVdwBdFoieHuET1rlfs4sOkeiJqFvPDlt6Y6CP5qJjMha6REW/s+dFyc9UkRGn8f8vuPtETAu9MFNvhwMItFgEr3r4E5+HvoEG9/Za0qd8XwFmplIuK0X006S10cnbuM1RmgGO++dCN/oq50hBksfgHAWvgAkE3h3UG/28Us4uFjsBkLqFgTgKbHZcDOxnSuMAMbJM3tCXhH3AQg9j73JHK7wU6M5jZ2V0uu1YPt3w9gVjcBR+rDR4jBPwDggalHXy516eOrZGdlJJMkQCR/HtzUl/xRxWu9U3+cTmCI8kmQS2fP9rIwL2eXt9QnAYT0lThkobZb5GcgV855piH6ZuIOSb6VApgRH9QupbasWLkJ41H0g7npYuebEWCboiSXCV6rpLCjK4LEizgdPpeKtfHb84yKIBVnA6IbZj3HapFnF2vlQYVrYhYkyOkiOSU1E7bsczCfcmzcMVLzjT8j5Xe3ipg0NojnBXqwZ2BeOlr9aujar7qqIH+LnfqawDIqyAe1AnXV+TbY2N1d5sBFeR5GHAfEqOBErNg="
+  file: build/distributions/dukas-proxy-*.zip
+  file_glob: true
+  skip_cleanup: true
+  overwrite: true
+  draft: true
+  on:
+    tags: true
