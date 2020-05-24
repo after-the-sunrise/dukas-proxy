@@ -7,14 +7,19 @@ notifications:
   email:
     - scm@after-sunrise.com
 
+env:
+  global:
+    - JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2
+
 deploy:
   provider: releases
   api_key:
-    secure: "H/9yD5ECMe9sI979o9zRUusV0q7Q+27b1TGsK8aG2RDmC49D739K9thg1bObuRR5mR9LcDIc9a2PahXeW8kxy2XkSK42BG4+cEjYHFz7KM9HklWIxKlT7Rmw8Ms5gFnBkjvB4eFAaVdwBdFoieHuET1rlfs4sOkeiJqFvPDlt6Y6CP5qJjMha6REW/s+dFyc9UkRGn8f8vuPtETAu9MFNvhwMItFgEr3r4E5+HvoEG9/Za0qd8XwFmplIuK0X006S10cnbuM1RmgGO++dCN/oq50hBksfgHAWvgAkE3h3UG/28Us4uFjsBkLqFgTgKbHZcDOxnSuMAMbJM3tCXhH3AQg9j73JHK7wU6M5jZ2V0uu1YPt3w9gVjcBR+rDR4jBPwDggalHXy516eOrZGdlJJMkQCR/HtzUl/xRxWu9U3+cTmCI8kmQS2fP9rIwL2eXt9QnAYT0lThkobZb5GcgV855piH6ZuIOSb6VApgRH9QupbasWLkJ41H0g7npYuebEWCboiSXCV6rpLCjK4LEizgdPpeKtfHb84yKIBVnA6IbZj3HapFnF2vlQYVrYhYkyOkiOSU1E7bsczCfcmzcMVLzjT8j5Xe3ipg0NojnBXqwZ2BeOlr9aujar7qqIH+LnfqawDIqyAe1AnXV+TbY2N1d5sBFeR5GHAfEqOBErNg="
+    secure: PjyMNtua5hZGHUhXpoS+kZbI+bdcGdz0R+NSdRjr4bvEtOXO8u0Hn2E6XVLe5WUNvMA4pdHdool5F44ay84LURWmuBXPMLpeaffJ/9Wn2FQ1lIwWXGoOt/nGbiRxeaM+szEmT4c2H1OE0oNMzaJCEX/r0uUis/QPCL1EVyNiNTeM7caYLM8xe5/KMqUMy8yfS6kRgCLDYF+sRrcmGc/5nssBHH5uzafyCAmP9QCeCJH9/ix4oB/1Guf/CV7a2WbJU8+vq7HJXjR479ek/jFpuYav2Pe+pZp+hZjCj1Rk1lwExf/GZahxLdCL9yDNXVqYxcCjQh5yqpbipj7yHJl1e7GJFOkP/dWKRafparI7kW5crhObSlgxs2DYcuIDycIqfhjXrc//sjP7Ue0M6v4ZQZjCsw5LXdMHXm0jWUfx+V8PY/EpPbjb7lM8gX2k0nT7lvdvmiH/6Zf0jIuS8R2uUs6iJlBnqqXU4iq5r8CxaRakLOuV+8vDYApD/bHfhKKsA6hbOh/9vSL4Stzg4Ru3intaWBFdHzlEq15Hn3IG82xYCzlPjKZ/dVp+V6jw1VR7l9Mc5F5plq3KblWs7pbprmv63B8EgOsV+gTQYlCc2MXbSmpBUq/TZAyBBFv1QxPZ+FSn7JxyP0oELQftAMujKwjDUYWwGE9+8zjnVyYvKII=
   file: build/distributions/dukas-proxy-*.zip
   file_glob: true
   skip_cleanup: true
   overwrite: true
   draft: true
   on:
+    repo: after-the-sunrise/dukas-proxy
     tags: true
