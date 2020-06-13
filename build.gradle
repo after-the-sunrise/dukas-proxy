@@ -11,36 +11,28 @@ repositories {
     }
 }
 
-ext {
-    simpleclient = '0.9.+'
-    springboot = '2.+'
-    immutables = '2.+'
-    jupiter = '5.+'
-    mockito = '3.+'
-}
-
 dependencies {
-    compile 'com.dukascopy.api:JForex-API:2.13.+'
-    compile('com.dukascopy.dds2:DDS2-jClient-JForex:3.6.+') {
+    compile 'com.dukascopy.api:JForex-API:2.13.88'
+    compile('com.dukascopy.dds2:DDS2-jClient-JForex:3.6.14') {
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
-    compile "org.apache.commons:commons-configuration2:2.+"
-    compile "com.google.code.gson:gson:2.+"
-    compile "org.immutables:value:$immutables"
-    compile "org.immutables:gson:$immutables"
-    compile("org.springframework.boot:spring-boot-starter-websocket:$springboot") {
+    implementation "org.apache.commons:commons-configuration2:2.7"
+    implementation "com.google.code.gson:gson:2.8.6"
+    implementation "org.immutables:value:2.8.8"
+    implementation "org.immutables:gson:2.8.8"
+    implementation("org.springframework.boot:spring-boot-starter-websocket:2.3.1.RELEASE") {
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
-    compile "io.prometheus:simpleclient_hotspot:$simpleclient"
-    compile "io.prometheus:simpleclient_servlet:$simpleclient"
-    runtime "io.prometheus:simpleclient_logback:$simpleclient"
-    runtime files('src/dist/conf')
-    providedRuntime "org.springframework.boot:spring-boot-starter-tomcat:$springboot"
-    annotationProcessor "org.immutables:value:$immutables"
-    annotationProcessor "org.immutables:gson:$immutables"
-    testImplementation "org.mockito:mockito-core:$mockito"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiter"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiter"
+    implementation "io.prometheus:simpleclient_hotspot:0.9.0"
+    implementation "io.prometheus:simpleclient_servlet:0.9.0"
+    runtimeOnly "io.prometheus:simpleclient_logback:0.9.0"
+    runtimeOnly files('src/dist/conf')
+    providedRuntime "org.springframework.boot:spring-boot-starter-tomcat:2.3.1.RELEASE"
+    annotationProcessor "org.immutables:value:2.8.8"
+    annotationProcessor "org.immutables:gson:2.8.8"
+    testImplementation "org.mockito:mockito-core:3.3.3"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.6.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.6.2"
 }
 
 sourceSets {
@@ -50,9 +42,6 @@ sourceSets {
 
 group 'com.after_sunrise.dukascopy'
 version '0.0.1-SNAPSHOT'
-
-sourceCompatibility = 11
-targetCompatibility = 11
 
 application {
     mainClassName = 'com.after_sunrise.dukascopy.proxy.Launcher'
@@ -64,6 +53,11 @@ distributions {
             from(files('README.md', 'LICENSE'))
         }
     }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 test {
